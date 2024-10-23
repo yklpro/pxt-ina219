@@ -1,0 +1,15 @@
+{
+    "name": "INA219",
+    "version": "0.0.1",
+    "description": "Micro:bit extension for interacting with INA219 sensor over I2C",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*"
+    },
+    "files": [
+        "main.ts",
+        "README.md"
+    ],
+    "testFiles": [],
+    "public": true
+}
