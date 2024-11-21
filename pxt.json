@@ -1,7 +1,7 @@
 {
     "name": "INA219",
     "version": "0.0.1",
-    "description": "Micro:bit extension for interacting with INA219 sensor over I2C; micro:bit 擴展積木，用於透過 I2C 從 INA219 感測器量測電壓、電流、功率",
+    "description": "micro:bit 擴展積木，用於透過 I2C 從 INA219 感測器量測電壓、電流、功率; Micro:bit extension for interacting with INA219 sensor over I2C",
     "license": "MIT",
     "dependencies": {
         "core": "*"
