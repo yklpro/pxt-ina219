@@ -1,7 +1,7 @@
 /**
  * INA219 功能擴展
  */
-// % color="#1E90FF" weight=100 icon="\uf496" block="INA219"
+//% color="#1E90FF" weight=100 icon="\uf496" block="INA219"
 namespace ina219 {
     
     let addr = 0x40;  // INA219 I2C address
