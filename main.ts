@@ -1,20 +1,22 @@
 /**
  * INA219 功能擴展
  */
-// % color="#1E90FF" weight=100 icon="\uf2db" block="INA219"
+// % color="#1E90FF" weight=100 icon="\ue1e9" block="INA219"
 namespace ina219 {
     
     let addr = 0x40;  // INA219 I2C address
     let Vsh_LSB = 10 * Math.pow(10, -6);  // 10uV fixed for shunt voltage
     let Bus_LSB = 4 * Math.pow(10, -3);   // 4mV fixed for bus voltage
+	let s_bit = 16;
 
     let IMAX = 1.5;  // 最大預期電流
     let Rsh = 0.1;   // 分流電阻 (Shunt resistor) 單位 ohm
     let Cur_LSB = IMAX / Math.pow(2, 15);
     let Pow_LSB = 20 * Cur_LSB;
     let CAL = Math.floor(0.04096 / (Cur_LSB * Rsh));
+	let config = 0x1ddf;
 
-    // I2C 讀取註冊器
+    // I2C 讀取暫存器
     function r_reg(reg: number): number {
         pins.i2cWriteNumber(addr, reg, NumberFormat.UInt8BE);
         let r_dat = pins.i2cReadBuffer(addr, 2); // 讀取2個byte
@@ -22,7 +24,7 @@ namespace ina219 {
         return dat;
     }
 
-    // I2C 寫入註冊器
+    // I2C 寫入暫存器
     function w_reg(pointer: number, dat: number): void {
         let buf = pins.createBuffer(3);
         buf[0] = pointer;
@@ -39,13 +41,14 @@ namespace ina219 {
         return dat;
     }
 
+
     /**
      * 初始化 INA219
      */
     //% block="初始化 INA219"
     export function initINA219(): void {
-        w_reg(0x00, 0x1ddf);  // 寫入配置註冊器
-        w_reg(0x05, CAL);     // 寫入校準註冊器
+        w_reg(0x00, config);  // 寫入配置暫存器
+        w_reg(0x05, CAL);     // 寫入校準暫存器
     }
 
     /**
@@ -62,14 +65,14 @@ namespace ina219 {
      */
     //% block="讀取分流電壓 (uV)"
     export function readShuntVoltage(): number {
-        let vsh = sig(r_reg(0x01), 16) * Vsh_LSB * 10 ** 6;  // 以 uV 為單位
+        let vsh = sig(r_reg(0x01), s_bit) * Vsh_LSB * 10 ** 6;  // 以 uV 為單位
         return vsh;
     }
 
     /**
-     * 讀取母線電壓 (mV)
+     * 讀取匯流排 (bus) 電壓 (mV)
      */
-    //% block="讀取母線電壓 (mV)"
+    //% block="讀取匯流排 (bus) 電壓 (mV)"
     export function readBusVoltage(): number {
         let vbs = (r_reg(0x02) >> 3) * Bus_LSB * 1000;  // 以 mV 為單位
         return vbs;
