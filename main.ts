@@ -19,8 +19,8 @@ namespace ina219 {
     // I2C 讀取暫存器
     function r_reg(reg: number): number {
         pins.i2cWriteNumber(addr, reg, NumberFormat.UInt8BE);
-        let r_dat = pins.i2cReadBuffer(addr, 2); // 讀取2個byte
-        let dat = (r_dat[0] << 8) | r_dat[1]; // 將 2 byte 組成 16 位元資料
+        let r_dat = pins.i2cReadBuffer(addr, 2); // 讀取2個bytes
+        let dat = (r_dat[0] << 8) | r_dat[1]; // 將 2 bytes 組成 16 bits 資料
         return dat;
     }
 
@@ -48,7 +48,7 @@ namespace ina219 {
     //% block="初始化 INA219"
     export function initINA219(): void {
         w_reg(0x00, config);  // 寫入配置暫存器
-        w_reg(0x05, CAL);     // 寫入校準暫存器
+        w_reg(0x05, CAL);     // 寫入校正暫存器
     }
 
     /**

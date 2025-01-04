@@ -2,7 +2,8 @@
 
 This extension allows you to interface with the INA219 sensor via I2C using the Micro:bit. The INA219 sensor measures voltage, current, and power in your circuits. This extension provides blocks to configure the sensor and read measurements directly from it.
 
-此擴充套件允許您透過 micro:bit 使用 I2C 與 INA219 感測器進行介面連接。INA219 感測器可測量電路中的電壓、電流及功率。此擴充套件提供積木以設定感測器並直接讀取測量值。
+此擴充套件允許您透過 micro:bit 使用 I2C 與 INA219 感測器進行連接。
+INA219 感測器可測量電路中的功率、電流及電壓。此擴充套件提供積木以設定感測器並直接讀取測量值。
 
 ## Features
 
