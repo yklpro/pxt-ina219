@@ -1,5 +1,7 @@
 # INA219 Micro:bit Extension
 
+<img src="icon.png" alt="block icon" width="200">
+
 This extension allows you to interface with the INA219 sensor via I2C using the Micro:bit. The INA219 sensor measures voltage, current, and power in your circuits. This extension provides blocks to configure the sensor and read measurements directly from it.
 
 此擴充套件允許您透過 micro:bit 使用 I2C 與 INA219 感測器進行連接。
@@ -11,7 +13,7 @@ the upper VIN+ connects to the positive terminal of the voltage to be measured,
 while VIN- connects to the negative terminal. The lower section of the diagram shows VCC, GND, SCL, and SDA, 
 which are the I2C signals for communication.
 
-因為 micro:bit 沒有直接量測電流、功率的能力，我們需要用 ina219 這個外接模組來量測。
+因為 micro:bit 沒有直接量測電流、功率的能力，我們需要用 INA219 這個外接模組來量測。
 下圖中，上方的 VIN+ 是接要量測的電壓正極， VIN- 是接要量測電壓的負極。
 下圖中，下方的 VCC、GND、SCL、SDA 是 I2C 信號。
 
